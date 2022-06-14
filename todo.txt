@@ -1,15 +1,18 @@
 Backend:
-- Password double confirm on register
-- Finish Search functionality
-- Groupby
+- Logic for queries on Sales data with Unit tests
+- Refactor views/models without repetition of the code in views
 - Data for Charts
 - Results by field
 - Reports
 - Get ideas (possibly from the kaggle) for data visualization
+- Add unit tests
+- Deploy
 
 
 
 Frontend:
+- Rework SignUp Page for confirmation password
+- Implement EmailVerification Page
 - Sale detail page
 - Charts
 - Modal ?

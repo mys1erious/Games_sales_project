@@ -47,10 +47,5 @@ class Sale(TimeStampedModel):
 
     objects = SaleManager()
 
-    # def delete(self, using=None, keep_parents=False):
-    #     if self.game:
-    #         self.game.delete()
-    #     super().delete(using)
-
     def __str__(self):
         return f'{self.game}'

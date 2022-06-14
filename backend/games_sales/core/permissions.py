@@ -8,7 +8,7 @@ class IsAdminOrIsAuthenticatedReadOnly(BasePermission):
         if request.user:
             user = request.user
             if hasattr(user, 'is_anonymous') and user.is_anonymous:
-                return True
+                return True  # Change to False
             elif user.is_admin:
                 return True
             elif request.method in SAFE_METHODS and user.is_authenticated:

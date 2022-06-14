@@ -4,6 +4,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.schemas import get_schema_view
 
 from accounts.api import views as account_views
+from profiles.api import views as profile_views
 from games.api import views as game_views
 from sales.api import views as sale_views
 from test_app.api import views as test_views
@@ -26,7 +27,7 @@ urlpatterns = [
     path(
         route='games/ratings/',
         view=game_views.RatingListCreateAPIView.as_view(),
-        name='game_ratings'
+        name='games_ratings'
     ),
 
 
@@ -34,36 +35,44 @@ urlpatterns = [
     path(
         route='sales/',
         view=sale_views.SaleListAPIView.as_view(),
-        name='Sales'
+        name='sales'
     ),
     # {% url 'api:Sales' sale.uuid %}
     path(
         route='sales/<uuid:uuid>/',
         view=sale_views.SaleDetailAPIView.as_view(),
-        name='Sales'
+        name='sales'
     ),
 
     # Auth
     path(
         route='auth/',
-        view=include('drf_social_oauth2.urls', namespace='drf')
+        view=include('drf_social_oauth2.urls', namespace='drf'),
+        name='auth'
     ),
     path(
         route='auth/signup/',
         view=account_views.UserSignUpAPIView.as_view(),
-        name='account_signup'
+        name='auth'
     ),
     path(
         route='auth/confirm-email/',
         view=account_views.UserConfirmEmailAPIView.as_view(),
-        name='account_confirm_email'
+        name='auth'
+    ),
+
+    # Profile
+    path(
+        route='profile/',
+        view =profile_views.ProfileDetailAPIView.as_view(),
+        name='profile'
     ),
 
     # For Testing
     path(
         route='test_image/create/',
         view=test_views.TestCreateAPIView.as_view(),
-        name='test_create'
+        name='test_app'
     ),
     # ----------
 

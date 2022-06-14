@@ -45,19 +45,18 @@ class Game(models.Model):
         editable=False
     )
     name = models.CharField(
-        max_length=120,
-        unique=True
+        max_length=120
     )
     platform = models.CharField(
         max_length=30,
         null=True, blank=True
     )
     publisher = models.CharField(
-        max_length=30,
+        max_length=120,
         null=True, blank=True
     )
     developer = models.CharField(
-        max_length=30,
+        max_length=120,
         null=True, blank=True
     )
     genre = models.CharField(

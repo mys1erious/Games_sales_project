@@ -22,21 +22,3 @@ class GameSerializer(serializers.ModelSerializer):
             'uuid', 'name', 'platform', 'publisher', 'developer',
             'genre', 'year_of_release', 'esrb_rating', 'rating'
         ]
-
-
-# Just instance sample
-# {
-#     "name": "name_test6",
-#     "platform": "",
-#     "publisher": "",
-#     "developer": "",
-#     "genre": "",
-#     "year_of_release": null,
-#     "esrb_rating": "",
-#     "rating": {
-#         "critic_score": 1.0,
-#         "critic_count": 2.0,
-#         "user_score": 4.0,
-#         "user_count": 10.0
-#     }
-# }

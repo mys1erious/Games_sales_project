@@ -1,3 +1,4 @@
+from django.core.exceptions import FieldError
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import get_object_or_404
 from django.db.models import Q
@@ -22,13 +23,25 @@ class SaleListAPIView(APIView, LimitOffsetPagination):
         sales = Sale.objects.all()
         query_data = request.query_params
 
-        if query_data: sales = self.search_filter(sales, query_data)
-        sales = sales.order_by('game')
+        if query_data:
+            sales = self.search_filter(sales, query_data)
+
+        if 'ordering' in query_data:
+            ordering = query_data.get('ordering')
+            try:
+                sales = sales.order_by(ordering)
+            except FieldError as e:
+                return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+        if 'page_size' in query_data:
+            page_size = query_data.get('page_size')
+            if page_size.isdigit():
+                self.page_size = page_size
 
         paginator = Paginator(sales, self.page_size)
 
-        if 'page' in request.query_params:
-            page_number = request.query_params.get('page')
+        if 'page' in query_data:
+            page_number = query_data.get('page')
         else:
             page_number = 1
 

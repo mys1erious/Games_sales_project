@@ -12,6 +12,14 @@ urlpatterns = [
         view=include(apiv1_urls),
         name='apiv1_urls'
     ),
+    path(
+        route='test_app/',
+        view=include('test_app.urls')
+    ),
+    path(
+        route='__debug__/',
+        view=include('debug_toolbar.urls')
+    ),
 
     path('admin/', admin.site.urls),
 ]
